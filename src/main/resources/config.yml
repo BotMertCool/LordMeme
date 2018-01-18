@@ -1,0 +1,9 @@
+DATABASE:
+  MONGO:
+    HOST: 127.0.0.1
+    PORT: 21902
+    AUTHENTICATION:
+      ENABLED: false
+      DATABASE: admin
+      USER: root
+      PASSWORD: pass
