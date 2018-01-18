@@ -39,12 +39,16 @@ public abstract class MemeFetchRequest implements Request {
 
         public InsertRequest(JsonArray data) {
             super("insert");
-
             this.data = data;
         }
 
         @Override
         public Map<String, Object> toMap() {
+
+            if(this.data == null) {
+                return null;
+            }
+
             return (Map<String, Object>)new ImmutableMap.Builder().put("data", this.data).putAll(super.toMap()).build();
         }
 
