@@ -10,7 +10,8 @@ import us.zonix.anticheat.util.*;
 import us.zonix.anticheat.data.*;
 import us.zonix.anticheat.check.*;
 import us.zonix.anticheat.util.update.*;
-import us.zonix.punishments.profile.Profile;
+import us.zonix.core.profile.Profile;
+
 
 public class CustomMovementHandler implements MovementHandler
 {

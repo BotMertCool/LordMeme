@@ -18,7 +18,7 @@ import org.bukkit.event.*;
 import us.zonix.anticheat.event.player.*;
 import net.minecraft.server.v1_8_R3.*;
 import us.zonix.anticheat.util.CustomLocation;
-import us.zonix.punishments.profile.Profile;
+import us.zonix.core.profile.Profile;
 
 public class CustomPacketHandler implements PacketHandler
 {

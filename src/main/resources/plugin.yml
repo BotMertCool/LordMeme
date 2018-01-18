@@ -2,3 +2,4 @@ name: LordMeme
 version: 1.0
 main: us.zonix.anticheat.LordMeme
 author: "Zonix Network"
+depend: [Core]

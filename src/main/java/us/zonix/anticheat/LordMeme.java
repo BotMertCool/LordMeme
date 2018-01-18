@@ -14,8 +14,6 @@ import org.bukkit.plugin.*;
 import us.zonix.anticheat.listener.*;
 import us.zonix.anticheat.runnable.*;
 import us.zonix.anticheat.util.command.CommandFramework;
-import us.zonix.anticheat.util.database.CheatDatabase;
-import us.zonix.anticheat.util.file.ConfigFile;
 
 public class LordMeme extends JavaPlugin
 {
@@ -27,16 +25,12 @@ public class LordMeme extends JavaPlugin
     private double rangeVl;
 
     @Getter private CommandFramework framework;
-
-    @Getter private ConfigFile configFile;
-    @Getter private CheatDatabase cheatDatabase;
     
     public LordMeme() {
         this.rangeVl = 60.0;
     }
     
     public void onEnable() {
-        this.registerDatabase();
         (LordMeme.instance = this).registerHandlers();
         this.registerManagers();
         this.registerListeners();
@@ -46,11 +40,6 @@ public class LordMeme extends JavaPlugin
     
     public boolean isAntiCheatEnabled() {
         return MinecraftServer.getServer().tps1.getAverage() > 19.0 && MinecraftServer.LAST_TICK_TIME + 100L > System.currentTimeMillis();
-    }
-
-    private void registerDatabase() {
-        this.configFile = new ConfigFile(this, "config");
-        this.cheatDatabase = new CheatDatabase(this);
     }
     
     private void registerHandlers() {
