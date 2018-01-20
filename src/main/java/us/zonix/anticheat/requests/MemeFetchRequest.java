@@ -1,7 +1,5 @@
 package us.zonix.anticheat.requests;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import us.zonix.core.shared.api.request.Request;
@@ -35,21 +33,19 @@ public abstract class MemeFetchRequest implements Request {
 
     public static final class InsertRequest extends MemeFetchRequest {
 
-        private JsonArray data;
+        private JsonObject data;
 
-        public InsertRequest(JsonArray data) {
+        public InsertRequest(JsonObject data) {
             super("insert");
+
             this.data = data;
         }
 
         @Override
         public Map<String, Object> toMap() {
-
-            if(this.data == null) {
-                return null;
-            }
-
-            return (Map<String, Object>)new ImmutableMap.Builder().put("data", this.data).putAll(super.toMap()).build();
+            return MapUtil.of(
+                    "data", this.data
+            );
         }
 
     }
