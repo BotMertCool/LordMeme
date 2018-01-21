@@ -50,6 +50,11 @@ public class ExportLogs implements Runnable
 
                     plugin.getLogger().info("The logs have been exported.");
                 }
+
+                @Override
+                public void onError(String message) {
+                    this.callback(null);
+                }
             });
 
             logIterator.remove();

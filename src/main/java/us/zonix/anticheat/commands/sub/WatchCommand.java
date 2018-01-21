@@ -33,7 +33,7 @@ public class WatchCommand extends MemeCommand {
         final PlayerData targetData = this.plugin.getPlayerDataManager().getPlayerData(target);
         targetData.togglePlayerWatching(player);
 
-        player.sendMessage(ChatColor.GREEN + "You are " + (targetData.isPlayerWatching(player) ? "now" : "no longer") + " focusing on " + player.getName() + " anticheat alerts.");
+        player.sendMessage(ChatColor.GREEN + "You are " + (targetData.isPlayerWatching(player) ? "now" : "no longer") + " focusing on " + target.getName() + " anticheat alerts.");
     }
 
 }

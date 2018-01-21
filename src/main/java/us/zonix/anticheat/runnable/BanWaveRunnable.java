@@ -32,7 +32,7 @@ public class BanWaveRunnable extends BukkitRunnable
                 this.plugin.getServer().broadcastMessage(ChatColor.RED.toString() + ChatColor.BOLD + "(!) " + ChatColor.RED + "Player has been removed from the network.");
                 this.plugin.getServer().broadcastMessage(ChatColor.DARK_GRAY.toString() + ChatColor.STRIKETHROUGH + "------------------------------------------");
 
-                this.plugin.getServer().getScheduler().runTask((Plugin)this.plugin, () -> this.plugin.getServer().dispatchCommand(this.plugin.getServer().getConsoleSender(), "ban -s " + name + " " + "Unfair Advantage"));
+                this.plugin.getServer().getScheduler().runTask((Plugin)this.plugin, () -> this.plugin.getServer().dispatchCommand(this.plugin.getServer().getConsoleSender(), "ban " + name + " " + "Unfair Advantage -s"));
 
             }
             else if (manager.getCheaters().size() == 0) {

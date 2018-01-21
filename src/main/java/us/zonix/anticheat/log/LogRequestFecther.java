@@ -63,8 +63,6 @@ public class LogRequestFecther {
         new BukkitRunnable() {
             public void run() {
 
-                Profile profile = Profile.getByUuid(uuid);
-
                 JsonElement response = CorePlugin.getInstance().getRequestProcessor().sendRequest(new MemeFetchRequest.FetchByUuidRequest(uuid));
 
                 if (response.isJsonNull() || response.isJsonPrimitive()) {

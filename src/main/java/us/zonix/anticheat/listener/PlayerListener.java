@@ -120,7 +120,7 @@ public class PlayerListener implements Listener
         this.plugin.getServer().broadcastMessage(ChatColor.RED.toString() + ChatColor.BOLD + "(!) " + ChatColor.RED + "Player has been removed from the network.");
         this.plugin.getServer().broadcastMessage(ChatColor.DARK_GRAY.toString() + ChatColor.STRIKETHROUGH + "------------------------------------------");
 
-        this.plugin.getServer().getScheduler().runTask((Plugin)this.plugin, () -> this.plugin.getServer().dispatchCommand((CommandSender)this.plugin.getServer().getConsoleSender(), "ban -s " + player.getName() + " Unfair Advantage"));
+        this.plugin.getServer().getScheduler().runTask((Plugin)this.plugin, () -> this.plugin.getServer().dispatchCommand((CommandSender)this.plugin.getServer().getConsoleSender(), "ban " + player.getName() + " Unfair Advantage -s"));
 
         final PlayerAlertEvent alertEvent = new PlayerAlertEvent(PlayerAlertEvent.AlertType.RELEASE, player, ChatColor.YELLOW + "was banned for " + ChatColor.GOLD + event.getReason() + ".");
         this.plugin.getServer().getPluginManager().callEvent((Event)alertEvent);
