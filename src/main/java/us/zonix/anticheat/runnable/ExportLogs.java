@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import us.zonix.anticheat.LordMeme;
 import us.zonix.anticheat.log.Log;
+import us.zonix.anticheat.requests.MemeFetchRequest;
 import us.zonix.core.CorePlugin;
 import us.zonix.core.api.callback.AbstractBukkitCallback;
 import us.zonix.core.api.request.PunishmentRequest;
@@ -40,7 +41,7 @@ public class ExportLogs implements Runnable
             object.addProperty("time", new Timestamp(log.getTimestamp()).toString());
             object.addProperty("message", log.getLog());
 
-            CorePlugin.getInstance().getRequestProcessor().sendRequestAsync(new PunishmentRequest.InsertRequest(object), new AbstractBukkitCallback() {
+            CorePlugin.getInstance().getRequestProcessor().sendRequestAsync(new MemeFetchRequest.InsertRequest(object), new AbstractBukkitCallback() {
                 @Override
                 public void callback(JsonElement response) {
                     if (response == null || response.isJsonNull() || response.isJsonPrimitive()) {
