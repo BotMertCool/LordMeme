@@ -36,11 +36,16 @@ public class CustomMovementHandler implements MovementHandler
             return;
         }
 
-        final Profile profile = Profile.getByUuid(player.getUniqueId());
+        final Profile profile = Profile.getByUuidIfAvailable(player.getUniqueId());
 
-        if (profile == null || profile.isBanned()) {
+        if (profile == null) {
             return;
         }
+
+        if(profile.isBanned()) {
+            return;
+        }
+        
         playerData.setWasOnGround(playerData.isOnGround());
         playerData.setWasInLiquid(playerData.isInLiquid());
         playerData.setWasUnderBlock(playerData.isUnderBlock());

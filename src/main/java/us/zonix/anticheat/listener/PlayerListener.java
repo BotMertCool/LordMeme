@@ -99,7 +99,7 @@ public class PlayerListener implements Listener
             }
         }
 
-        final String alert = event.getAlert() + ChatColor.GRAY + " (Ping " + playerData.getPing() + " ms) (TPS " + fixedTPS + ").";
+        final String alert = event.getAlert().replace("was caught using a ", "").replace("was caught using ", "") + ChatColor.GRAY + " (Ping " + playerData.getPing() + " ms) (TPS " + fixedTPS + ").";
         final Log log = new Log(player.getUniqueId(), ChatColor.stripColor(alert));
         this.plugin.getLogManager().addToLogQueue(log);
     }
@@ -147,7 +147,7 @@ public class PlayerListener implements Listener
         final PlayerAlertEvent callEvent = new PlayerAlertEvent(PlayerAlertEvent.AlertType.RELEASE, player, ChatColor.YELLOW + "has been added to the next " + ChatColor.GOLD + "Ban Wave" + ChatColor.YELLOW + ".");
         this.plugin.getServer().getPluginManager().callEvent((Event)callEvent);
 
-        final Log log = new Log(player.getUniqueId(), "was added to the next ban wave for " + event.getReason());
+        final Log log = new Log(player.getUniqueId(), "Added to the next ban wave for " + event.getReason());
         this.plugin.getLogManager().addToLogQueue(log);
     }
     

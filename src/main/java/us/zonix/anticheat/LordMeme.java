@@ -81,7 +81,7 @@ public class LordMeme extends JavaPlugin
     }
     
     private void registerExportLogsTimer() {
-        this.getServer().getScheduler().runTaskTimerAsynchronously((Plugin)this, (Runnable)new ExportLogs(this), 3600L, 3600L);
+        this.getServer().getScheduler().runTaskTimerAsynchronously((Plugin)this, (Runnable)new ExportLogs(this), 600L, 600L);
     }
     
     public PlayerDataManager getPlayerDataManager() {
