@@ -8,12 +8,13 @@ import us.zonix.anticheat.commands.MemeCommand;
 import us.zonix.anticheat.data.PlayerData;
 import us.zonix.anticheat.util.command.Command;
 import us.zonix.anticheat.util.command.CommandArgs;
+import us.zonix.core.rank.Rank;
 
 public class ExemptCommand extends MemeCommand {
 
     private LordMeme plugin = LordMeme.getInstance();
 
-    @Command(name = "pussy", permission = "meme.exempt")
+    @Command(name = "pussy", permission = Rank.MANAGER)
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();

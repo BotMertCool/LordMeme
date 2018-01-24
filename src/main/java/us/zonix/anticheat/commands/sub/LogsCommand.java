@@ -8,10 +8,11 @@ import us.zonix.anticheat.commands.MemeCommand;
 import us.zonix.anticheat.log.LogRequestFecther;
 import us.zonix.anticheat.util.command.Command;
 import us.zonix.anticheat.util.command.CommandArgs;
+import us.zonix.core.rank.Rank;
 
 public class LogsCommand extends MemeCommand {
 
-    @Command(name = "logs", permission = "meme.logs")
+    @Command(name = "logs", permission = Rank.ADMINISTRATOR)
     public void onCommand(CommandArgs command) {
         CommandSender sender = command.getSender();
         String[] args = command.getArgs();

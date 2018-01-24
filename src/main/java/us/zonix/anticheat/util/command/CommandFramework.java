@@ -13,6 +13,7 @@ import org.bukkit.help.HelpTopicComparator;
 import org.bukkit.help.IndexHelpTopic;
 import org.bukkit.plugin.SimplePluginManager;
 import us.zonix.anticheat.LordMeme;
+import us.zonix.core.profile.Profile;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -63,14 +64,23 @@ public class CommandFramework implements CommandExecutor {
                 Command command = method.getAnnotation(Command.class);
 
 
-                if (!command.permission().equals("") && !sender.hasPermission(command.permission())) {
-                    sender.sendMessage(ChatColor.RED + "You don't have enough permissions.");
-                    return true;
-                }
-
                 if (command.inGameOnly() && !(sender instanceof Player)) {
                     sender.sendMessage(ChatColor.RED + "This command is only performable in game.");
                     return true;
+                }
+
+                if(sender instanceof Player) {
+                    Player player = (Player) sender;
+                    Profile profile = Profile.getByUuid(player.getUniqueId());
+
+                    if(profile == null) {
+                        return true;
+                    }
+
+                    if(!profile.getRank().isAboveOrEqual(command.permission())) {
+                        sender.sendMessage(ChatColor.RED + "You don't have enough permissions.");
+                        return true;
+                    }
                 }
 
                 try {

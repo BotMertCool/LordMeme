@@ -6,12 +6,13 @@ import us.zonix.anticheat.LordMeme;
 import us.zonix.anticheat.commands.MemeCommand;
 import us.zonix.anticheat.util.command.Command;
 import us.zonix.anticheat.util.command.CommandArgs;
+import us.zonix.core.rank.Rank;
 
 public class AlertsCommand extends MemeCommand {
 
     private LordMeme plugin = LordMeme.getInstance();
 
-    @Command(name = "stfu", permission = "meme.alerts")
+    @Command(name = "stfu", permission = Rank.ADMINISTRATOR)
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();

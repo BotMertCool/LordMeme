@@ -1,5 +1,7 @@
 package us.zonix.anticheat.util.command;
 
+import us.zonix.core.rank.Rank;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -18,7 +20,7 @@ import java.lang.annotation.Target;
 public @interface Command {
 
 	public String name();
-	public String permission() default "";
+	public Rank permission() default Rank.DEFAULT;
 	public String[] aliases() default {};
 	public String description() default "";
 	public String usage() default "";

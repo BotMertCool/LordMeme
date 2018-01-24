@@ -11,12 +11,13 @@ import us.zonix.anticheat.event.BanWaveEvent;
 import us.zonix.anticheat.event.player.PlayerBanEvent;
 import us.zonix.anticheat.util.command.Command;
 import us.zonix.anticheat.util.command.CommandArgs;
+import us.zonix.core.rank.Rank;
 
 public class BanWaveCommand extends MemeCommand {
 
     private LordMeme plugin = LordMeme.getInstance();
 
-    @Command(name = "banwave", permission = "meme.admin")
+    @Command(name = "banwave", permission = Rank.DEVELOPER)
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();

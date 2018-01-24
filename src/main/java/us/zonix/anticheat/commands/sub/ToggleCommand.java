@@ -6,6 +6,7 @@ import us.zonix.anticheat.LordMeme;
 import us.zonix.anticheat.commands.MemeCommand;
 import us.zonix.anticheat.util.command.Command;
 import us.zonix.anticheat.util.command.CommandArgs;
+import us.zonix.core.rank.Rank;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +16,7 @@ public class ToggleCommand extends MemeCommand {
     public static final Set<String> DISABLED_CHECKS;
     private LordMeme plugin = LordMeme.getInstance();
 
-    @Command(name = "kys", permission = "meme.admin")
+    @Command(name = "kys", permission = Rank.DEVELOPER)
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();

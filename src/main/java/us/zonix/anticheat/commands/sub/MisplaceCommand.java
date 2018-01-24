@@ -10,12 +10,13 @@ import us.zonix.anticheat.data.PlayerData;
 import us.zonix.anticheat.event.player.PlayerBanEvent;
 import us.zonix.anticheat.util.command.Command;
 import us.zonix.anticheat.util.command.CommandArgs;
+import us.zonix.core.rank.Rank;
 
 public class MisplaceCommand extends MemeCommand {
 
     private LordMeme plugin = LordMeme.getInstance();
 
-    @Command(name = "rail", permission = "meme.misplace")
+    @Command(name = "rail", permission = Rank.DEVELOPER)
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();
