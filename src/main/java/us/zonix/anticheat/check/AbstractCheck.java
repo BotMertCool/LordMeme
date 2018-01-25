@@ -1,11 +1,17 @@
 package us.zonix.anticheat.check;
 
+import com.google.common.collect.Lists;
 import org.bukkit.ChatColor;
 import us.zonix.anticheat.*;
 import us.zonix.anticheat.data.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;
 import us.zonix.anticheat.event.player.*;
+import us.zonix.core.profile.Profile;
+import us.zonix.core.rank.Rank;
+
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class AbstractCheck<T> implements ICheck<T>
 {
@@ -28,6 +34,13 @@ public abstract class AbstractCheck<T> implements ICheck<T>
     }
     
     protected boolean alert(final PlayerAlertEvent.AlertType alertType, final Player player, final String message, final boolean violation) {
+
+        Profile profile = Profile.getByUuidIfAvailable(player.getUniqueId());
+
+        if(profile != null && (profile.getRank() == Rank.PARTNER || profile.getRank() == Rank.MEDIA_OWNER || profile.getRank() == Rank.DEVELOPER || profile.getRank() == Rank.OWNER)) {
+            return false;
+        }
+
         final String check = this.name + ((alertType != PlayerAlertEvent.AlertType.RELEASE) ? (" (" + Character.toUpperCase(alertType.name().toLowerCase().charAt(0)) + alertType.name().toLowerCase().substring(1) + ")") : "") + ". ";
         final PlayerAlertEvent event = new PlayerAlertEvent(alertType, player, ChatColor.YELLOW + "was caught using " + ChatColor.GOLD + check);
         this.plugin.getServer().getPluginManager().callEvent(event);
@@ -41,6 +54,12 @@ public abstract class AbstractCheck<T> implements ICheck<T>
     }
     
     protected boolean ban(final Player player) {
+
+        Profile profile = Profile.getByUuidIfAvailable(player.getUniqueId());
+
+        if(profile != null && (profile.getRank() == Rank.PARTNER || profile.getRank() == Rank.MEDIA_OWNER || profile.getRank() == Rank.DEVELOPER || profile.getRank() == Rank.OWNER)) {
+            return false;
+        }
 
         int random = (int) (Math.random() * 100);
 
@@ -56,6 +75,13 @@ public abstract class AbstractCheck<T> implements ICheck<T>
     }
     
     protected void randomBan(final Player player, final double rate) {
+
+        Profile profile = Profile.getByUuidIfAvailable(player.getUniqueId());
+
+        if(profile != null && (profile.getRank() == Rank.PARTNER || profile.getRank() == Rank.MEDIA_OWNER || profile.getRank() == Rank.DEVELOPER || profile.getRank() == Rank.OWNER)) {
+            return;
+        }
+
         this.playerData.setRandomBanRate(rate);
         this.playerData.setRandomBanReason(this.name);
         this.playerData.setRandomBan(true);

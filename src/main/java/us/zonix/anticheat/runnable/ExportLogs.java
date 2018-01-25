@@ -18,9 +18,11 @@ public class ExportLogs implements Runnable
 {
     private Queue<Log> logs;
     private LordMeme plugin;
+    private int count;
     
     public ExportLogs(LordMeme plugin) {
         this.plugin = plugin;
+        this.count = 0;
         this.logs = plugin.getLogManager().getLogQueue();
     }
 
@@ -30,6 +32,8 @@ public class ExportLogs implements Runnable
         if (this.logs.isEmpty()) {
             return;
         }
+
+        this.count = 0;
 
         Iterator<Log> logIterator = this.logs.iterator();
 
@@ -49,7 +53,8 @@ public class ExportLogs implements Runnable
                         return;
                     }
 
-                    plugin.getLogger().info("The logs have been exported.");
+                    count++;
+
                 }
 
                 @Override
@@ -60,5 +65,7 @@ public class ExportLogs implements Runnable
 
             logIterator.remove();
         }
+
+        plugin.getLogger().info(this.count + " logs have been exported.");
     }
 }

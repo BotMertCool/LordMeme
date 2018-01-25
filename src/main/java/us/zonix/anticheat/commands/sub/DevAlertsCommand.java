@@ -12,7 +12,7 @@ public class DevAlertsCommand extends MemeCommand {
 
     private LordMeme plugin = LordMeme.getInstance();
 
-    @Command(name = "gtfo", permission = Rank.DEVELOPER)
+    @Command(name = "gtfo", permission = Rank.ADMINISTRATOR)
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();
