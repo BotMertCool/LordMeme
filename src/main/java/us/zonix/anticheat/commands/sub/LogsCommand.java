@@ -12,7 +12,7 @@ import us.zonix.core.rank.Rank;
 
 public class LogsCommand extends MemeCommand {
 
-    @Command(name = "logs", permission = Rank.MODERATOR)
+    @Command(name = "logs", permission = Rank.SENIOR_MODERATOR)
     public void onCommand(CommandArgs command) {
         CommandSender sender = command.getSender();
         String[] args = command.getArgs();

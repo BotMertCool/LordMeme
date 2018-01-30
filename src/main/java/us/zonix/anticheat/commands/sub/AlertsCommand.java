@@ -12,7 +12,7 @@ public class AlertsCommand extends MemeCommand {
 
     private LordMeme plugin = LordMeme.getInstance();
 
-    @Command(name = "stfu", permission = Rank.MODERATOR)
+    @Command(name = "stfu", permission = Rank.SENIOR_MODERATOR)
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();
