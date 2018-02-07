@@ -57,15 +57,8 @@ public abstract class AbstractCheck<T> implements ICheck<T>
 
         Profile profile = Profile.getByUuidIfAvailable(player.getUniqueId());
 
-        if(profile != null && (profile.getRank() == Rank.PARTNER || profile.getRank() == Rank.MEDIA_OWNER || profile.getRank() == Rank.DEVELOPER || profile.getRank() == Rank.OWNER)) {
+        if(profile != null && (profile.getRank() == Rank.PARTNER || profile.getRank() == Rank.MEDIA_OWNER || profile.getRank() == Rank.MEDIA_ADMIN || profile.getRank() == Rank.DEVELOPER || profile.getRank() == Rank.OWNER)) {
             return false;
-        }
-
-        int random = (int) (Math.random() * 100);
-
-        if(random <= 5) {
-            this.banWave(player, "Ban Wave");
-            return true;
         }
 
         this.playerData.setBanning(true);
@@ -78,7 +71,7 @@ public abstract class AbstractCheck<T> implements ICheck<T>
 
         Profile profile = Profile.getByUuidIfAvailable(player.getUniqueId());
 
-        if(profile != null && (profile.getRank() == Rank.PARTNER || profile.getRank() == Rank.MEDIA_OWNER || profile.getRank() == Rank.DEVELOPER || profile.getRank() == Rank.OWNER)) {
+        if(profile != null && (profile.getRank() == Rank.PARTNER || profile.getRank() == Rank.MEDIA_OWNER || profile.getRank() == Rank.MEDIA_ADMIN || profile.getRank() == Rank.DEVELOPER || profile.getRank() == Rank.OWNER)) {
             return;
         }
 

@@ -49,7 +49,7 @@ public class ExportLogs implements Runnable
                 @Override
                 public void callback(JsonElement response) {
                     if (response == null || response.isJsonNull() || response.isJsonPrimitive()) {
-                        System.out.println(ChatColor.RED + "Failed to contact the database...");
+                        this.callback(null);
                         return;
                     }
 
