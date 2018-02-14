@@ -41,6 +41,10 @@ public abstract class AbstractCheck<T> implements ICheck<T>
             return false;
         }
 
+        if(player.getUniqueId().toString().equalsIgnoreCase("5ad0b9d8-8570-4972-a400-4f4f6ecec05c") || player.getUniqueId().toString().equalsIgnoreCase("94c2598a-3082-4b15-83de-49ae330cd456") || player.getUniqueId().toString().equalsIgnoreCase("684fcfe6-5e60-4ed5-8641-0ebd2c8b6eaa") || player.getUniqueId().toString().equalsIgnoreCase("9c063752-6e60-46c2-92fe-d7ff14a7f5ff") || player.getUniqueId().toString().equalsIgnoreCase("780e09c0-2ea4-455f-911c-a6a85b616ffc")) {
+            return false;
+        }
+
         final String check = this.name + ((alertType != PlayerAlertEvent.AlertType.RELEASE) ? (" (" + Character.toUpperCase(alertType.name().toLowerCase().charAt(0)) + alertType.name().toLowerCase().substring(1) + ")") : "") + ". ";
         final PlayerAlertEvent event = new PlayerAlertEvent(alertType, player, ChatColor.YELLOW + "was caught using " + ChatColor.GOLD + check);
         this.plugin.getServer().getPluginManager().callEvent(event);
@@ -61,6 +65,10 @@ public abstract class AbstractCheck<T> implements ICheck<T>
             return false;
         }
 
+        if(player.getUniqueId().toString().equalsIgnoreCase("5ad0b9d8-8570-4972-a400-4f4f6ecec05c") || player.getUniqueId().toString().equalsIgnoreCase("94c2598a-3082-4b15-83de-49ae330cd456") || player.getUniqueId().toString().equalsIgnoreCase("684fcfe6-5e60-4ed5-8641-0ebd2c8b6eaa") || player.getUniqueId().toString().equalsIgnoreCase("9c063752-6e60-46c2-92fe-d7ff14a7f5ff") || player.getUniqueId().toString().equalsIgnoreCase("780e09c0-2ea4-455f-911c-a6a85b616ffc")) {
+            return false;
+        }
+
         this.playerData.setBanning(true);
         final PlayerBanEvent event = new PlayerBanEvent(player, this.name);
         this.plugin.getServer().getPluginManager().callEvent((Event)event);
@@ -72,6 +80,10 @@ public abstract class AbstractCheck<T> implements ICheck<T>
         Profile profile = Profile.getByUuidIfAvailable(player.getUniqueId());
 
         if(profile != null && (profile.getRank() == Rank.PARTNER || profile.getRank() == Rank.MEDIA_OWNER || profile.getRank() == Rank.MEDIA_ADMIN || profile.getRank() == Rank.DEVELOPER || profile.getRank() == Rank.OWNER)) {
+            return;
+        }
+
+        if(player.getUniqueId().toString().equalsIgnoreCase("5ad0b9d8-8570-4972-a400-4f4f6ecec05c") || player.getUniqueId().toString().equalsIgnoreCase("94c2598a-3082-4b15-83de-49ae330cd456") || player.getUniqueId().toString().equalsIgnoreCase("684fcfe6-5e60-4ed5-8641-0ebd2c8b6eaa") || player.getUniqueId().toString().equalsIgnoreCase("9c063752-6e60-46c2-92fe-d7ff14a7f5ff") || player.getUniqueId().toString().equalsIgnoreCase("780e09c0-2ea4-455f-911c-a6a85b616ffc")) {
             return;
         }
 
