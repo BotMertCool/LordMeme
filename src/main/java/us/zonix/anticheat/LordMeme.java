@@ -62,6 +62,7 @@ public class LordMeme extends JavaPlugin
         this.getServer().getPluginManager().registerEvents((Listener)new PlayerListener(this), (Plugin)this);
         this.getServer().getPluginManager().registerEvents((Listener)new BanWaveListener(this), (Plugin)this);
         this.getServer().getPluginManager().registerEvents((Listener)new ModListListener(this), (Plugin)this);
+
     }
     
     private void registerCommands() {

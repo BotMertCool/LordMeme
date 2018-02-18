@@ -38,7 +38,7 @@ public class PhaseB extends PacketCheck
                 }
                 else {
                     if (((PacketPlayInEntityAction)packet).b() == PacketPlayInEntityAction.EnumPlayerAction.START_SNEAKING && this.stage >= 3) {
-                        this.plugin.getAlertsManager().forceAlert(player.getName() + " might be phasing: " + this.stage);
+                        this.plugin.getAlertsManager().forceAlert(player.getName() + " caught using Phase. " + this.stage);
                         break;
                     }
                     break;
