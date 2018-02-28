@@ -79,7 +79,6 @@ public class PlayerData
     private int lastCps;
     private int movementsSinceIce;
     private int movementsSinceUnderBlock;
-    private double boxerCount;
     
     public PlayerData(final LordMeme plugin) {
         this.recentPlayerPackets = new HashMap<UUID, List<CustomLocation>>();
@@ -631,21 +630,9 @@ public class PlayerData
     public void setMovementsSinceUnderBlock(final int movementsSinceUnderBlock) {
         this.movementsSinceUnderBlock = movementsSinceUnderBlock;
     }
-
-    public double getBoxerCount() {
-        return this.boxerCount;
-    }
-
-    public void incrementBoxerCount() {
-        this.boxerCount = this.boxerCount + 1;
-    }
-
-    public void setBoxerCount(int count) {
-        this.boxerCount = count;
-    }
     
     static {
-        CHECKS = new Class[] { AimAssistA.class, AimAssistB.class, AimAssistC.class, AimAssistD.class, AimAssistE.class, AutoClickerA.class, AutoClickerB.class, AutoClickerC.class, AutoClickerD.class, AutoClickerE.class, AutoClickerF.class, AutoClickerG.class, AutoClickerH.class, AutoClickerI.class, AutoClickerJ.class, AutoClickerK.class, AutoClickerK.class, AutoClickerL.class, BadPacketsA.class, BadPacketsB.class, BadPacketsBoxer.class, BadPacketsC.class, BadPacketsD.class, BadPacketsE.class, BadPacketsF.class, BadPacketsG.class, BadPacketsH.class, BadPacketsI.class, BadPacketsJ.class, BadPacketsK.class, BadPacketsL.class, FlyA.class, FlyB.class, FlyC.class, InventoryA.class, InventoryB.class, InventoryC.class, InventoryD.class, InventoryE.class, InventoryF.class, InventoryG.class, KillAuraA.class, KillAuraB.class, KillAuraC.class, KillAuraD.class, KillAuraE.class, KillAuraF.class, KillAuraG.class, KillAuraH.class, KillAuraI.class, KillAuraJ.class, KillAuraK.class, KillAuraL.class, KillAuraM.class, KillAuraN.class, KillAuraO.class, KillAuraP.class, KillAuraQ.class, KillAuraR.class, KillAuraS.class, RangeA.class, TimerA.class, VelocityA.class, VelocityB.class, VelocityC.class, WTapA.class, WTapB.class, ScaffoldA.class, ScaffoldB.class, ScaffoldC.class/**PhaseA.class, PhaseB.class, VClipA.class, VClipB.class, StepA.class**/};
+        CHECKS = new Class[] { AimAssistA.class, AimAssistB.class, AimAssistC.class, AimAssistD.class, AimAssistE.class, AutoClickerA.class, AutoClickerB.class, AutoClickerC.class, AutoClickerD.class, AutoClickerE.class, AutoClickerF.class, AutoClickerG.class, AutoClickerH.class, AutoClickerI.class, AutoClickerJ.class, AutoClickerK.class, AutoClickerK.class, AutoClickerL.class, BadPacketsA.class, BadPacketsB.class, BadPacketsC.class, BadPacketsD.class, BadPacketsE.class, BadPacketsF.class, BadPacketsG.class, BadPacketsH.class, BadPacketsI.class, BadPacketsJ.class, BadPacketsK.class, BadPacketsL.class, FlyA.class, FlyB.class, FlyC.class, InventoryA.class, InventoryB.class, InventoryC.class, InventoryD.class, InventoryE.class, InventoryF.class, InventoryG.class, KillAuraA.class, KillAuraB.class, KillAuraC.class, KillAuraD.class, KillAuraE.class, KillAuraF.class, KillAuraG.class, KillAuraH.class, KillAuraI.class, KillAuraJ.class, KillAuraK.class, KillAuraL.class, KillAuraM.class, KillAuraN.class, KillAuraO.class, KillAuraP.class, KillAuraQ.class, KillAuraR.class, KillAuraS.class, RangeA.class, TimerA.class, VelocityA.class, VelocityB.class, VelocityC.class, WTapA.class, WTapB.class, ScaffoldA.class, ScaffoldB.class, ScaffoldC.class/**PhaseA.class, PhaseB.class, VClipA.class, VClipB.class, StepA.class**/};
         CONSTRUCTORS = new ConcurrentHashMap<Class<? extends ICheck>, Constructor<? extends ICheck>>();
         for (final Class<? extends ICheck> check : PlayerData.CHECKS) {
             try {

@@ -29,11 +29,5 @@ public class PlayerDataManager
     public PlayerDataManager(final LordMeme plugin) {
         this.playerDataMap = new HashMap<UUID, PlayerData>();
         this.plugin = plugin;
-
-        plugin.getServer().getScheduler().runTaskTimer(plugin, () -> {
-            for (PlayerData data : this.playerDataMap.values()) {
-                data.setBoxerCount(0);
-            }
-        }, 0L, 20L);
     }
 }
