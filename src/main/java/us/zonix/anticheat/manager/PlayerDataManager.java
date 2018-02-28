@@ -17,7 +17,11 @@ public class PlayerDataManager
     public void removePlayerData(final Player player) {
         this.playerDataMap.remove(player.getUniqueId());
     }
-    
+
+    public boolean hasPlayerData(final Player player) {
+        return this.playerDataMap.containsKey(player.getUniqueId());
+    }
+
     public PlayerData getPlayerData(final Player player) {
         return this.playerDataMap.get(player.getUniqueId());
     }
@@ -25,5 +29,11 @@ public class PlayerDataManager
     public PlayerDataManager(final LordMeme plugin) {
         this.playerDataMap = new HashMap<UUID, PlayerData>();
         this.plugin = plugin;
+
+        plugin.getServer().getScheduler().runTaskTimer(plugin, () -> {
+            for (PlayerData data : this.playerDataMap.values()) {
+                data.setBoxerCount(0);
+            }
+        }, 0L, 20L);
     }
 }
