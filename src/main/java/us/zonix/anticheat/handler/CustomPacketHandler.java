@@ -3,6 +3,7 @@ package us.zonix.anticheat.handler;
 import club.minemen.spigot.handler.*;
 import net.minecraft.server.v1_8_R3.Entity;
 import org.bukkit.ChatColor;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import us.zonix.anticheat.*;
 import us.zonix.anticheat.commands.sub.ToggleCommand;
 import us.zonix.anticheat.data.*;
@@ -22,6 +23,11 @@ import us.zonix.core.profile.Profile;
 
 public class CustomPacketHandler implements PacketHandler
 {
+
+    private static final List<String> INSTANT_BREAK_BLOCKS = Arrays.asList(
+            "reeds", "waterlily", "deadbush", "flower", "doubleplant", "tallgrass"
+    );
+
     private final LordMeme plugin;
     
     public void handleReceivedPacket(final PlayerConnection playerConnection, final Packet packet) {
@@ -93,13 +99,32 @@ public class CustomPacketHandler implements PacketHandler
                 }
                 case "PacketPlayInBlockDig": {
                     final PacketPlayInBlockDig.EnumPlayerDigType digType = ((PacketPlayInBlockDig)packet).c();
-                    if (digType == PacketPlayInBlockDig.EnumPlayerDigType.START_DESTROY_BLOCK) {
-                        playerData.setDigging(true);
-                        break;
-                    }
-                    if (digType == PacketPlayInBlockDig.EnumPlayerDigType.ABORT_DESTROY_BLOCK || digType == PacketPlayInBlockDig.EnumPlayerDigType.STOP_DESTROY_BLOCK) {
+
+                    if (playerData.getFakeBlocks().contains(((PacketPlayInBlockDig) packet).a())) {
+                        playerData.setInstantBreakDigging(false);
+                        playerData.setFakeDigging(true);
                         playerData.setDigging(false);
-                        break;
+                    } else {
+                        playerData.setFakeDigging(false);
+
+                        if (digType == PacketPlayInBlockDig.EnumPlayerDigType.START_DESTROY_BLOCK) {
+                            Block block = ((CraftWorld) player.getWorld()).getHandle().c(
+                                    ((PacketPlayInBlockDig) packet).a());
+
+                            String tile = block.a().replace("tile.", "");
+
+                            if (INSTANT_BREAK_BLOCKS.contains(tile)) {
+                                playerData.setInstantBreakDigging(true);
+                            } else {
+                                playerData.setInstantBreakDigging(false);
+                            }
+
+                            playerData.setDigging(true);
+                        } else if (digType == PacketPlayInBlockDig.EnumPlayerDigType.ABORT_DESTROY_BLOCK ||
+                                   digType == PacketPlayInBlockDig.EnumPlayerDigType.STOP_DESTROY_BLOCK) {
+                            playerData.setInstantBreakDigging(false);
+                            playerData.setDigging(false);
+                        }
                     }
                     break;
                 }
@@ -166,6 +191,41 @@ public class CustomPacketHandler implements PacketHandler
                     }
                     break;
                 }
+                case "PacketPlayOutMultiBlockChange":
+                    for (PacketPlayOutMultiBlockChange.MultiBlockChangeInfo info :
+                            ((PacketPlayOutMultiBlockChange) packet).getB()) {
+                        BlockPosition position = info.a();
+
+                        String name = info.c().getBlock().toString().replace("Block{minecraft:", "")
+                                .replace("}", "");
+
+                        StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+
+                        if (elements.length == 19 && elements[3].getMethodName().equals("sendTo")) {
+                            if (name.equals("air")) {
+                                playerData.getFakeBlocks().remove(position);
+                            } else {
+                                playerData.getFakeBlocks().add(position);
+                            }
+                        }
+                    }
+                    break;
+                case "PacketPlayOutBlockChange":
+                    BlockPosition position = ((PacketPlayOutBlockChange) packet).getPosition();
+
+                    String name = ((PacketPlayOutBlockChange) packet).block.getBlock().toString()
+                            .replace("Block{minecraft:", "").replace("}", "");
+
+                    StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+
+                    if (elements.length == 13 && elements[3].getMethodName().equals("sendBlockChange")) {
+                        if (name.equals("air")) {
+                            playerData.getFakeBlocks().remove(position);
+                        } else {
+                            playerData.getFakeBlocks().add(position);
+                        }
+                    }
+                    break;
             }
         }
         catch (Exception e) {

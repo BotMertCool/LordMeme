@@ -51,6 +51,32 @@ public class CustomMovementHandler implements MovementHandler
         playerData.setWasUnderBlock(playerData.isUnderBlock());
         playerData.setWasInWeb(playerData.isInWeb());
         playerData.setOnGround(BlockUtil.isOnGround(to, 0) || BlockUtil.isOnGround(to, 1));
+        if (!playerData.isOnGround()) {
+            positions: for (BlockPosition position : playerData.getFakeBlocks()) {
+                int x = position.getX();
+                int z = position.getZ();
+
+                int blockX = to.getBlock().getX();
+                int blockZ = to.getBlock().getZ();
+
+                for (int xOffset = -1; xOffset <= 1; xOffset++) {
+                    for (int zOffset = -1; zOffset <= 1; zOffset++) {
+                        if (x == blockX + xOffset && z == blockZ + zOffset) {
+                            int y = position.getY();
+                            int pY = to.getBlock().getY();
+
+                            if (pY - y <= 1 && pY > y) {
+                                playerData.setOnGround(true);
+                            }
+
+                            if (playerData.isOnGround()) {
+                                break positions;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         if (playerData.isOnGround()) {
             playerData.setLastGroundY(to.getY());
         }

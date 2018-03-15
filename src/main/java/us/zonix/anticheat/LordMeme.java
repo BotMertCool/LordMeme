@@ -27,11 +27,12 @@ public class LordMeme extends JavaPlugin
     @Getter private CommandFramework framework;
     
     public LordMeme() {
-        this.rangeVl = 60.0;
+        this.rangeVl = 30.0;
     }
     
     public void onEnable() {
-        (LordMeme.instance = this).registerHandlers();
+        LordMeme.instance = this;
+        this.registerHandlers();
         this.registerManagers();
         this.registerListeners();
         this.registerCommands();
@@ -43,8 +44,8 @@ public class LordMeme extends JavaPlugin
     }
     
     private void registerHandlers() {
-        ClubSpigot.INSTANCE.addPacketHandler((PacketHandler)new CustomPacketHandler(this));
-        ClubSpigot.INSTANCE.addMovementHandler((MovementHandler)new CustomMovementHandler(this));
+        ClubSpigot.INSTANCE.addPacketHandler(new CustomPacketHandler(this));
+        ClubSpigot.INSTANCE.addMovementHandler(new CustomMovementHandler(this));
 
         this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", new BungeeListener(this));
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
@@ -59,10 +60,9 @@ public class LordMeme extends JavaPlugin
     }
     
     private void registerListeners() {
-        this.getServer().getPluginManager().registerEvents((Listener)new PlayerListener(this), (Plugin)this);
-        this.getServer().getPluginManager().registerEvents((Listener)new BanWaveListener(this), (Plugin)this);
-        this.getServer().getPluginManager().registerEvents((Listener)new ModListListener(this), (Plugin)this);
-
+        this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new BanWaveListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new ModListListener(this), this);
     }
     
     private void registerCommands() {
@@ -82,7 +82,7 @@ public class LordMeme extends JavaPlugin
     }
     
     private void registerExportLogsTimer() {
-        this.getServer().getScheduler().runTaskTimerAsynchronously((Plugin)this, (Runnable)new ExportLogs(this), 600L, 600L);
+        this.getServer().getScheduler().runTaskTimerAsynchronously(this, new ExportLogs(this), 600L, 600L);
     }
     
     public PlayerDataManager getPlayerDataManager() {

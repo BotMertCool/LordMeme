@@ -19,7 +19,10 @@ public class AutoClickerE extends PacketCheck
     
     @Override
     public void handleCheck(final Player player, final Packet packet) {
-        if (packet instanceof PacketPlayInArmAnimation && !this.playerData.isDigging() && !this.playerData.isPlacing() && System.currentTimeMillis() - this.playerData.getLastDelayedMovePacket() > 220L && this.playerData.getLastMovePacket() != null && System.currentTimeMillis() - this.playerData.getLastMovePacket().getTimestamp() < 110L) {
+        if (packet instanceof PacketPlayInArmAnimation
+            && (System.currentTimeMillis() - this.playerData.getLastDelayedMovePacket()) > 220L
+            && (System.currentTimeMillis() - this.playerData.getLastMovePacket().getTimestamp()) < 110L
+            && !this.playerData.isDigging() && !this.playerData.isPlacing() && !this.playerData.isFakeDigging()) {
             if (this.sent) {
                 ++this.count;
                 if (!this.failed) {
