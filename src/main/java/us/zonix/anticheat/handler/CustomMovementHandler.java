@@ -80,7 +80,7 @@ public class CustomMovementHandler implements MovementHandler
         if (playerData.isOnGround()) {
             playerData.setLastGroundY(to.getY());
         }
-        playerData.setInLiquid(BlockUtil.isOnLiquid(to, -1) || BlockUtil.isOnLiquid(to, -1));
+        playerData.setInLiquid(BlockUtil.isOnLiquid(to, 0) || BlockUtil.isOnLiquid(to, 1) || BlockUtil.isOnLiquid(to, -1));
         playerData.setInWeb(BlockUtil.isOnWeb(to, 0));
         playerData.setOnIce(BlockUtil.isOnIce(to, 1) || BlockUtil.isOnIce(to, 2));
         if (playerData.isOnIce()) {

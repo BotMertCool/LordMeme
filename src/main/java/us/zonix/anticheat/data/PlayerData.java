@@ -78,6 +78,7 @@ import us.zonix.anticheat.check.impl.range.RangeA;
 import us.zonix.anticheat.check.impl.scaffold.ScaffoldA;
 import us.zonix.anticheat.check.impl.scaffold.ScaffoldB;
 import us.zonix.anticheat.check.impl.scaffold.ScaffoldC;
+import us.zonix.anticheat.check.impl.step.StepA;
 import us.zonix.anticheat.check.impl.timer.TimerA;
 import us.zonix.anticheat.check.impl.velocity.VelocityA;
 import us.zonix.anticheat.check.impl.velocity.VelocityB;
@@ -338,7 +339,9 @@ import us.zonix.anticheat.util.CustomLocation;
 
 				WTapA.class, WTapB.class,
 
-				ScaffoldA.class, ScaffoldB.class, ScaffoldC.class
+				ScaffoldA.class, ScaffoldB.class, ScaffoldC.class,
+
+				StepA.class,
 
 				/*PhaseA.class, PhaseB.class, VClipA.class, VClipB.class, StepA.class*/
 		};
