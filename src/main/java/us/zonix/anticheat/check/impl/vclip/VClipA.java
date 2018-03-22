@@ -16,11 +16,11 @@ public class VClipA extends PositionCheck {
     
     @Override
     public void handleCheck(final Player player, final PositionUpdate update) {
-
-        final double difference = (update.getTo().getY() - update.getFrom().getY());
+        double difference = update.getTo().getY() - update.getFrom().getY();
         if (difference >= 2.0 && !BlockUtil.isBlockFaceAir(player)) {
             player.teleport(update.getFrom());
             this.alert(PlayerAlertEvent.AlertType.RELEASE, player, "", true);
         }
     }
+
 }

@@ -9,17 +9,18 @@ import us.zonix.anticheat.util.update.PositionUpdate;
 
 public class StepA extends PositionCheck {
 
-    public StepA(final LordMeme plugin, final PlayerData playerData) {
-        super(plugin, playerData, "Step (Check 1)");
-    }
+	public StepA(final LordMeme plugin, final PlayerData playerData) {
+		super(plugin, playerData, "Step (Check 1)");
+	}
 
-    @Override
-    public void handleCheck(final Player player, final PositionUpdate update) {
-        double height = 0.9;
-        double difference = update.getTo().getY() - update.getFrom().getY();
+	@Override
+	public void handleCheck(final Player player, final PositionUpdate update) {
+		double height = 0.9;
+		double difference = update.getTo().getY() - update.getFrom().getY();
 
-        if (difference > height) {
-            this.alert(PlayerAlertEvent.AlertType.EXPERIMENTAL, player, "", true);
-        }
-    }
+		if (difference > height) {
+			this.alert(PlayerAlertEvent.AlertType.EXPERIMENTAL, player, "", true);
+		}
+	}
+
 }
