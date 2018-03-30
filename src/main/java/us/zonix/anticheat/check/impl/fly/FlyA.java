@@ -25,7 +25,7 @@ public class FlyA extends PositionCheck
             double limit = 2.0;
             if (player.hasPotionEffect(PotionEffectType.JUMP)) {
                 for (final PotionEffect effect : player.getActivePotionEffects()) {
-                    if (effect.getType().equals((Object)PotionEffectType.JUMP)) {
+                    if (effect.getType().equals(PotionEffectType.JUMP)) {
                         final int level = effect.getAmplifier() + 1;
                         limit += Math.pow(level + 4.2, 2.0) / 16.0;
                         break;
