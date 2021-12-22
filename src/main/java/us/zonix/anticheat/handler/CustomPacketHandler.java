@@ -542,6 +542,7 @@ public class CustomPacketHandler implements PacketHandler
             double z = packet.getD() / 32.0;
             final float yaw = packet.getE() * 360.0f / 256.0f;
             final float pitch = packet.getF() * 360.0f / 256.0f;
+
             if (playerData.getMisplace() != 0.0) {
                 final CustomLocation lastLocation = playerData.getLastMovePacket();
                 final float entityYaw = this.getAngle(x, z, lastLocation);
@@ -552,6 +553,7 @@ public class CustomPacketHandler implements PacketHandler
                 packet.setB(MathHelper.floor(x * 32.0));
                 packet.setD(MathHelper.floor(z * 32.0));
             }
+
             playerData.addPlayerPacket(target.getUniqueId(), new CustomLocation(x, y, z, yaw, pitch));
         }
     }

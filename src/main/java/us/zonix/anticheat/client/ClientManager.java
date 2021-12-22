@@ -17,8 +17,8 @@ public class ClientManager
     private final LordMeme plugin;
     
     public ClientManager(final LordMeme plugin) {
-        this.payloadClients = new HashSet<PayloadClientType>();
-        this.modClients = new HashSet<ModClientType>();
+        this.payloadClients = new HashSet<>();
+        this.modClients = new HashSet<>();
         this.plugin = plugin;
         this.modClients.add(new ModClientType("Ethylene", "ethylene", null));
         this.modClients.add(new ModClientType("Ghost Client (Generic)", "gc", null));
